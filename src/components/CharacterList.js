@@ -7,17 +7,20 @@ export default function CharacterList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://rick-api.herokuapp.com/api/")
-      .then(response => {
-        console.log("This is the axios call", response);
-        setData(response);
-      })
-      .catch(error => {
-        console.log("Unable to retrieve data", error);
-      });
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
+    const getCharacters = () => {
+      axios
+        .get("https://rickandmortyapi.com/api/character/")
+        .then(response => {
+          console.log("This is the axios call", response);
+          setData(response);
+        })
+        .catch(error => {
+          console.log("Unable to retrieve data", error);
+        });
+      // TODO: Add API Request here - must run in `useEffect`
+      //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
+      getCharacters();
+    };
   }, []);
 
   return (
