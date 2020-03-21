@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function SearchForm(props) {
-  const [searching, setSearching] = useState();
+export default function SearchForm({ items }) {
+  const [searching, setSearching] = useState("");
+  console.log("this is the data", items);
   const handleChange = event => {
     event.preventDefault();
     setSearching(event.target.value);
   };
+
+    const searchCharacters = items.filter(character =>
+      character.toLowerCase().includes(searching.toLowerCase())
+    );
 
   return (
     <section className="search-form">
