@@ -12,9 +12,7 @@ export default function Header() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/characterlist/">
-              Characters <CharacterList />
-            </Link>
+            <Link to="/characterlist/">Characters</Link>
           </li>
         </ul>
       </div>
