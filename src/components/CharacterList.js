@@ -5,6 +5,7 @@ import SearchForm from "./SearchForm";
 
 export default function CharacterList() {
   const [data, setData] = useState([]);
+  const [stateData, setStateData] = useState([]);
 
   useEffect(() => {
     const getCharacters = () => {
@@ -13,6 +14,7 @@ export default function CharacterList() {
         .then(response => {
           console.log("this is the axios call", response.data.results);
           setData(response.data.results);
+          setStateData(response.data.results);
         })
         .catch(error => {
           console.log("server error", error);
@@ -23,8 +25,8 @@ export default function CharacterList() {
 
   return (
     <section className="character-list">
-      <SearchForm />
-      {data.map(item => (
+      <SearchForm data={data} setState={setStateData}/>
+      {stateData.map(item => (
         <CharacterCard key={item.id} data={item} />
       ))}
     </section>
